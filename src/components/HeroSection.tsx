@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroShield from "@/assets/hero-shield.png";
 
 const HeroSection = () => {
@@ -25,15 +26,17 @@ const HeroSection = () => {
               <Button 
                 size="lg"
                 className="button-shadow bg-primary hover:bg-primary-hover text-lg px-8 py-6"
+                asChild
               >
-                Try Detection Demo
+                <Link to="/detection-demo">Try Detection Demo</Link>
               </Button>
               <Button 
                 variant="outline" 
                 size="lg"
                 className="text-lg px-8 py-6 border-2 hover:bg-muted"
+                asChild
               >
-                Report Deepfake
+                <Link to="/report-deepfake">Report Deepfake</Link>
               </Button>
             </div>
           </div>

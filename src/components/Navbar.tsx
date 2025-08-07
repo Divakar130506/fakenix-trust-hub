@@ -16,42 +16,42 @@ const Navbar = () => {
           {/* Navigation Menu - Hidden on mobile */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="text-foreground hover:text-primary transition-smooth font-medium"
               >
                 Home
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/report-deepfake"
                 className="text-muted-foreground hover:text-primary transition-smooth font-medium"
               >
                 Report Deepfake
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/track-reports"
                 className="text-muted-foreground hover:text-primary transition-smooth font-medium"
               >
                 Track Reports
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/forum"
                 className="text-muted-foreground hover:text-primary transition-smooth font-medium"
               >
                 Forum
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/roadmap"
                 className="text-muted-foreground hover:text-primary transition-smooth font-medium"
               >
                 Roadmap
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/about"
                 className="text-muted-foreground hover:text-primary transition-smooth font-medium"
               >
                 About
-              </a>
+              </Link>
             </div>
           </div>
 
