@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -56,11 +57,11 @@ const Navbar = () => {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" className="text-foreground hover:text-primary">
-              Log in
+            <Button variant="ghost" className="text-foreground hover:text-primary" asChild>
+              <Link to="/login">Log in</Link>
             </Button>
-            <Button className="button-shadow bg-primary hover:bg-primary-hover">
-              Sign up
+            <Button className="button-shadow bg-primary hover:bg-primary-hover" asChild>
+              <Link to="/signup">Sign up</Link>
             </Button>
           </div>
 
