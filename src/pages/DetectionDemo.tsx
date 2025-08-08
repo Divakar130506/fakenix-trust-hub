@@ -39,6 +39,14 @@ const DetectionDemo = () => {
     });
   };
   const simulateAnalysis = () => {
+    if (!selectedFile) {
+      toast({
+        title: "No file selected",
+        description: "Please choose a file to analyze before starting.",
+        variant: "destructive",
+      });
+      return;
+    }
     setIsAnalyzing(true);
     setResult(null);
     
@@ -152,7 +160,7 @@ const DetectionDemo = () => {
               size="lg" 
               className="button-shadow"
               onClick={simulateAnalysis}
-              disabled={isAnalyzing}
+              disabled={isAnalyzing || !selectedFile}
             >
               {isAnalyzing ? (
                 <>
