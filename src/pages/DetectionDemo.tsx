@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, type ChangeEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,29 @@ const DetectionDemo = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState<any>(null);
   const { toast } = useToast();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] ?? null;
+    if (!file) return;
+    const MAX_SIZE = 100 * 1024 * 1024; // 100MB
+    if (file.size > MAX_SIZE) {
+      setSelectedFile(null);
+      toast({
+        title: "File too large",
+        description: "Please upload a file up to 100MB.",
+        variant: "destructive",
+      });
+      e.target.value = "";
+      return;
+    }
+    setSelectedFile(file);
+    toast({
+      title: "File selected",
+      description: `${file.name}`,
+    });
+  };
   const simulateAnalysis = () => {
     setIsAnalyzing(true);
     setResult(null);
@@ -83,9 +105,21 @@ const DetectionDemo = () => {
                     <p className="text-muted-foreground mb-4">
                       Supports MP4, AVI, MOV, JPG, PNG files up to 100MB
                     </p>
-                    <Button variant="outline">
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/*,video/*"
+                      className="hidden"
+                      onChange={(e: ChangeEvent<HTMLInputElement>) => handleFileChange(e)}
+                    />
+                    <Button variant="outline" onClick={() => fileInputRef.current?.click()} aria-label="Choose file to analyze">
                       Choose File
                     </Button>
+                    {selectedFile && (
+                      <div className="mt-3 text-sm text-muted-foreground" role="status" aria-live="polite">
+                        Selected: <span className="font-medium text-foreground">{selectedFile.name}</span>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
